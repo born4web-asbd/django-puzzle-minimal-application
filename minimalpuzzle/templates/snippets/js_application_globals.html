@@ -1,0 +1,17 @@
+{% load static %}
+{% load bootstrap4 %}
+
+{% include 'snippets/hotkeys_logic.html' %}
+
+{% include 'snippets/auto_refresh_logic.html' %}
+
+{% include 'snippets/delayed_redirect.html' %}
+
+{% include "snippets/menu_responsivity_include.html" %}
+
+<!-- Bootstrap JS -->
+{% bootstrap_jquery %}
+{% bootstrap_javascript %}
+
+<!-- TOOLTIPS -->
+<script src="{% static 'js/init_tooltips.js' %}" defer></script>

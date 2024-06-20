@@ -1,0 +1,294 @@
+{% load static %}
+{% load navbar_active %}
+{% load user_has_group %}
+{% load user_has_any_group %}
+{% load user_has_all_groups %}
+
+<nav class="navbar navbar-expand-lg text-center {{ global_application_color_schema_configuration.navbar_style }} {{ global_application_color_schema_configuration.navbar_background_color }}">
+    <!-- MENU COLLAPS -->
+    <a class="navbar-brand" href="/">
+        {% with favicon_path=""|add:global_application_template_configuration.favicon_icon %}
+            <img src="{% static favicon_path %}" width="32" height="32" class="d-inline-block align-top" alt="">
+        {% endwith %}
+        {{ global_application_template_configuration.application_display_name }}
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- MENU ITEMS -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            {% if user.is_authenticated %}
+                <!-- KONFIGURACE -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">
+                        Nastavení
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarKonfigurace">
+                        <li><a class="dropdown-item" href='{% url "byty:filtry-zobrazeni-domy" %}'><b>Filtry zobrazení
+                            domy</b></a></li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">Uživatelský účet</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href='{% url "accounts:account-change-password" %}'>Změnit
+                                    heslo</a></li>
+                                <li>
+                                    <div class="dropdown-divider"></div>
+                                </li>
+                                <li><a class="dropdown-item" href='{% url "accounts:account-detail" %}'>Detaily</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">Kategorie</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href='{% url "contacts:category-contacts-listing" %}'>Kategorie
+                                    kontaktů</a></li>
+                                <li>
+                                    <div class="dropdown-divider"></div>
+                                </li>
+                                <li><a class="dropdown-item" href='{% url "sluzby:kategoriezalohy-listing" %}'>Kategorie
+                                    předpisů plateb</a></li>
+                                <li><a class="dropdown-item" href='{% url "sluzby:kategoriefaktury-listing" %}'>Kategorie
+                                    dokladů k rozúčtování</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li><a class="dropdown-item" href='{% url "byty:vyber-konfiguraci-dum" %}'>Parametry - domy</a>
+                        </li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li><a class="dropdown-item" href='{% url "uzaverky:vyber-konfiguraci-uzaverky" %}'>Parametry -
+                            uzávěrky</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- BYTY -->
+                <li class="nav-item dropdown {% navbar_active 'byty' %}">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">
+                        Domy a jednotky
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarByty">
+                        <li>
+                            <a class="dropdown-item" href='{% url "byty:domy-listing" %}'><b>Domy</b></a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href='{% url "byty:domy-create" %}'>Přidat nový</a>
+                        </li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href='{% url "byty:byty-listing" %}'><b>Jednotky</b></a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href='{% url "byty:byty-create" %}'>Přidat novou</a>
+                        </li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href='{% url "sluzby:zalohydefinice-listing" %}'>
+                                <b>Předpisy plateb</b>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href='{% url "sluzby:zalohyplatby-listing" %}'><b>Platby</b></a>
+                        </li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href='{% url "sluzby:gpc-import-kreditni-vyber-dum" %}'><b>GPC Import -
+                                připsané platby</b></a>
+                        </li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href='{% url "byty:najemnici-listing" %}'>Nájemnící</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href='{% url "byty:vlastnici-listing" %}'>Vlastníci</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href='{% url "byty:pocetosob-listing" %}'>Počty osob</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- SLUZBY -->
+                <li class="nav-item dropdown {% navbar_active 'sluzby' %}">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">
+                        Služby
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarSluzbyy">
+                        <li>
+                            <a class="dropdown-item" href='{% url "sluzby:sluzbydefinice-listing" %}'>Definice</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href='{% url "sluzby:sluzbykoeficienty-listing" %}'>Koeficienty</a>
+                        </li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href='{% url "sluzby:sluzbyfaktury-listing" %}'>
+                                <b>Doklady k rozúčtování</b>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href='{% url "sluzby:gpc-import-debetni-vyber-dum" %}'>
+                                <b>GPC Import - odepsané platby</b>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- MERIDLA -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">
+                        Měřidla
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarOaplikaci">
+                        <li><a class="dropdown-item" href='{% url "sluzby:sluzbydefinice-listing-odecitane" %}'>Seznam odečtových služeb</a></li>
+                        <li><a class="dropdown-item" href='{% url "odecty:rozpadove-sluzby-listing" %}'>Služby rozpad fakturace</a></li>
+                        <li><div class="dropdown-divider"></div></li>
+                        <li><a class="dropdown-item" href='{% url "odecty:odecty-listing" %}'>Seznam odečtů měřidel</a></li>
+                        <li><div class="dropdown-divider"></div></li>
+                        <li><a class="dropdown-item" href='{% url "odecty:meridla-listing" %}'>Seznam měřidel</a></li>
+                        <li><a class="dropdown-item" href='{% url "odecty:rozpadova-meridla-listing" %}'>Seznam rozpadových měřidel</a></li>
+                        <li><div class="dropdown-divider"></div></li>
+                        <li><a class="dropdown-item" href='{% url "odecty:uzaverky-vyber-sluzbu-odecty" %}'>Roční závěrka měřidel</a></li>
+                        <li><a class="dropdown-item" href='{% url "odecty:uzaverky-vyber-sluzbu-rozpady" %}'>Roční závěrka rozpadových měřidel</a></li>
+                        <li><div class="dropdown-divider"></div></li>
+                        <li><a class="dropdown-item" href='{% url "odecty:meridla-create" %}'>Přidej nové měřidlo</a></li>
+                        <li><a class="dropdown-item" href='{% url "odecty:odecty-create" %}'>Přidej nový odečet</a></li>
+                    </ul>
+                </li>
+                <!-- UZAVERKY -->
+                <li class="nav-item dropdown {% navbar_active 'uzaverky' %}">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">
+                        Závěrky
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarZaverky">
+                        <li><a class="dropdown-item" href='{% url "sluzby:sluzbyodecty-listing" %}'>Odečty</a></li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li><a class="dropdown-item" href='{% url "uzaverky:rocni-uzaverka-vyber-dum" %}'>Roční
+                            závěrka</a></li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li><a class="dropdown-item" href='{% url "uzaverky:archiv-rocnich-uzaverek-vyber-dum" %}'>Archiv
+                            ročních závěrek</a></li>
+                    </ul>
+                </li>
+                <!-- KONTAKTY -->
+                <li class="nav-item dropdown {% navbar_active 'contacts' %}">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">
+                        Kontakty
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarKontakty">
+                        <li><a class="dropdown-item" href='{% url "contacts:contacts-listing" %}'>Seznam</a></li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li><a class="dropdown-item" href='{% url "contacts:choose-create-type" %}'>Přidej nový
+                            kontakt</a></li>
+                        <li><a class="dropdown-item" href='{% url "contacts:ares-search-company-id" %}'>Přidej kontakt
+                            přes ARES</a></li>
+                        <li><a class="dropdown-item" href='{% url "contacts:contacts-fulltext-search" %}'>Hledej
+                            text</a></li>
+                    </ul>
+                </li>
+            {% endif %}
+            <!-- FEEDBACK -->
+            {% if request.user|user_has_any_group:"developers admin_module_feedback feedback_user" %}
+                <li class="nav-item dropdown {% navbar_active 'feedback' %}">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">
+                        Podněty
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDeveloper">
+                        <li><a class="dropdown-item" href='{% url "feedback:feedbacknote-listing" %}'>Seznam podnětů</a></li>
+                        {% if request.user|user_has_any_group:"developers admin_module_feedback" %}
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li><a class="dropdown-item" href='{% url "feedback:feedbacknote-category-listing" %}'>Kategorie podnětů</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+            {% endif %}
+            <!-- ADMIN TOOLS -->
+            {% if request.user|user_has_any_group:"developers admin_module_admin admin_module_accounts" %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">
+                        Administrace
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDeveloper">
+                        {% if request.user|user_has_group:"admin_module_admin" %}
+                            <li><a class="dropdown-item" href='{% url "admin:index" %}'>Django admin</a></li>
+                            <li>
+                                <div class="dropdown-divider"></div>
+                            </li>
+                            <li><a class="dropdown-item" href='{% url "sluzby:sluzbydefinice-ukoncene-listing" %}'>Ukončené
+                                služby</a></li>
+                            <li><a class="dropdown-item" href='{% url "sluzby:sluzbydefinice-reaktivace-listing" %}'>Neaktivní
+                                služby</a></li>
+                            <li>
+                                <div class="dropdown-divider"></div>
+                            </li>
+                        {% endif %}
+                        {% if request.user|user_has_group:"developers" %}
+                            <li><a class="dropdown-item"
+                                   href='{% url "common:session-list-parameters" %}'>Sessions...</a></li>
+                            <li>
+                                <div class="dropdown-divider"></div>
+                            </li>
+                        {% endif %}
+                        {% if request.user|user_has_group:"admin_module_accounts" %}
+                            <li><a class="dropdown-item" href='{% url "accounts:account-listing" %}'>Uživatelé
+                                aplikace</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+            {% endif %}
+        </ul>
+        <ul class="navbar-nav">
+            <!-- ZAMKNOUT -->
+            <li class="nav-item">
+                {% if user.is_authenticated %}
+                    <a title="Odhlásit se..."
+                       href="{% url 'accounts:confirm-account-logout' %}"><i class="fas fa-lock-open"></i></a>
+                {% else %}
+                    <a title="Přihlásit se..."
+                       href="{% url 'accounts:account-login' %}"><i class="fas fa-lock"></i></a>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+</nav>

@@ -3,9 +3,12 @@
 import os
 import sys
 
+from dotenv import read_dotenv
 
 def main():
     """Run administrative tasks."""
+    read_dotenv(override=True)
+
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'minimalpuzzle.settings')
     try:
         from django.core.management import execute_from_command_line

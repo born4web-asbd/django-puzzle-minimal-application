@@ -1,42 +1,23 @@
-# SAMOSTATNE REPOSITORY MODULU
+# DJANGO PUZZLE STAND ALONE MODULES
 contacts/
 accounts/
 textnote/
-messagebox/
-databox/
-reportbox/
+feedback/
 sharedlibrary/
 logs/
 data/
-feedback/
 
-# lib/
-
-# APLIKACNI SOUBORY, ktere chci vyloucit
-db_*
-*.bat
-
-# APLIKACNI ADRESARE, ktere chci vyloucit
-data/dbbackup/*
-data/import/*
-data/export/*
-data/uzaverky/*
-data/help_pages/export/*
-data/message_events/export/*
-data/report_definitions/export/*
-data/specific_apps/export/*
+# OTHER DIRS
 static_deployment/*
 static/*
 
-# MOJE SOUBORY
+# DJANGO PUZZLE FILES
+db_*
 db.sqlite3
 db.sqlite3.*
 secretkey.txt
 flatpages_site_id.txt
 production_allowed_hosts.py
-django_sqlite_backup.py
-git_status.sh
-git_push_all.sh
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
