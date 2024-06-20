@@ -1,0 +1,1 @@
+# django-puzzle-minimal-application
