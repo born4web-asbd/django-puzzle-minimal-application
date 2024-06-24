@@ -1,26 +1,37 @@
-{% extends 'django_puzzle_bootstrap5_base_template.html' %}
-
-{% load bootstrap5 %}
-{% load static %}
 {% load menu %}
-
-{% block django_puzzles_title %}
-    {% if head_title %}
-        {{ head_title }}
-    {% endif %}
-{% endblock %}
-
-{%  block django_puzzles_favicon %}
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- BASE CSS configuration -->
+    {% include "snippets/css_application_globals.html" %}
+    {% block custom_css %}{% endblock custom_css %}
+    <!-- TITLE -->
+    <title>
+        {% if head_title %}
+            {{ head_title }}
+        {% else %}
+            Nadpis stránky
+        {% endif %}
+    </title>
     <link rel="shortcut icon" href="{% static 'img/favicon-asbd.png' %}"/>
-{%  endblock %}
-
-{% block django_puzzles_content %}
+    <!-- JAVASCRIPT -->
+    {% include "snippets/js_application_globals.html" %}
+    {% block custom_header_java_scripts %}{% endblock custom_header_java_scripts %}
+    <!-- CUSTOM HEADER PARAMS -->
+    {% block extra_header_parameters %}{% endblock extra_header_parameters %}
+</head>
+<body>
+<!-- MAIN CONTENT CONTAINER -->
 <div class='container-fluid'>
     <!-- MENU ROW -->
     <div class='row ml-0 {{ global_application_color_schema_configuration.menu_row_background_color }} {{ global_application_color_schema_configuration.menu_row_text_color }}'>
         <div class="col-12">
             <!-- MAIN MENU - NAVBAR -->
-            {% include "django_puzzle_minimal_navbar.html" %}
+            {% include "asbd_navbar.html" %}
         </div>
     </div>
     <!-- DYNAMIC CONTEXT ROW -->
@@ -54,7 +65,7 @@
         <!-- RIGHT MENU -->
         {% if menu_right %}
             <div id="menu_right"
-                 class="col-lg-3 col-xl-2 border-start {{ global_application_color_schema_configuration.right_menu_background_color }} {{ global_application_color_schema_configuration.right_menu_border_color }}">
+                 class="col-lg-3 col-xl-2 {{ global_application_color_schema_configuration.right_menu_background_color }} {{ global_application_color_schema_configuration.right_menu_border_color }}">
                 {% render_menu menu_right %}
             </div>
         {% endif %}
@@ -72,4 +83,18 @@
         </div>
     </div>
 </div>
-{% endblock %}
+<!-- Custom Footer JavaScript -->
+{% block custom_footer_java_scripts %}{% endblock custom_footer_java_scripts %}
+<!-- Developer and debug content -->
+{% if is_developer and show_developer_content %}
+    {% include "snippets/developer_debug_content_block.html" %}
+{% endif %}
+<!-- Screen size -->
+{% if show_screen_size_icon and is_developer %}
+    <br>{% include "snippets/show_screen_size_icon.html" %}<br>
+{% endif %}
+{% if show_browser_xy_size and is_developer %}
+    <br>{% include "snippets/show_browser_window_size.html" %}<br>
+{% endif %}
+</body>
+</html>

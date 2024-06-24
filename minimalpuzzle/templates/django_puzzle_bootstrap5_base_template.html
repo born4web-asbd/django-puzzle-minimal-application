@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% load bootstrap5 %}
+{% if 'use_i18n'|bootstrap_setting %}
+    {% load i18n %}
+    {% get_current_language as LANGUAGE_CODE %}
+{% endif %}
+<html lang="{{ LANGUAGE_CODE|default:'en_us' }}">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    {% bootstrap_css %}
+
+    <!-- Bootstrap JavaScript if it is in head -->
+    {% if 'javascript_in_head'|bootstrap_setting %}
+        {% bootstrap_javascript %}
+    {% endif %}
+
+    <!-- CUSTOM HEADER CSS -->
+    {% block django_puzzles_header_css %}{% endblock django_puzzles_header_css %}
+    <!-- CUSTOM HEADER JAVA SCRIPT -->
+    {% block django_puzzles_header_java_scripts %}{% endblock django_puzzles_header_java_scripts %}
+    <!-- CUSTOM HEADER PARAMS -->
+    {% block django_puzzles_extra_header_parameters %}{% endblock django_puzzles_extra_header_parameters %}
+
+    <!-- TITLE -->
+    <title>{% block django_puzzles_title %}Nadpis stránky{% endblock django_puzzles_title %}</title>
+
+    <!-- FAVICON -->
+    {% block django_puzzles_favicon %}Nadpis stránky{% endblock django_puzzles_favicon %}
+
+</head>
+
+<body>
+{% block django_puzzles_before_content %}{% endblock django_puzzles_before_content %}
+{% block django_puzzles_content %} OBSAH STRANKY {% endblock django_puzzles_content %}
+{% block django_puzzles_after_content %}{% endblock django_puzzles_after_content %}
+
+<!-- Bootstrap JavaScript if it is in body -->
+{% if not 'javascript_in_head'|bootstrap_setting %}
+    {% bootstrap_javascript %}
+{% endif %}
+
+{% block django_puzzles_footer_java_scripts %}{% endblock django_puzzles_footer_java_scripts %}
+
+{% block django_puzzles_developer_content %}{% endblock django_puzzles_developer_content %}
+</body>
+
+</html>

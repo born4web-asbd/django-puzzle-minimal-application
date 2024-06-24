@@ -1,4 +1,3 @@
-{% load bootstrap5 %}
 {% load static %}
 {% load navbar_active %}
 {% load user_has_group %}
@@ -29,7 +28,7 @@
                         Nastavení
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarKonfigurace">
-                        <li><a class="dropdown-item" href=''><b>Filtry zobrazení
+                        <li><a class="dropdown-item" href='{% url "byty:filtry-zobrazeni-domy" %}'><b>Filtry zobrazení
                             domy</b></a></li>
                         <li>
                             <div class="dropdown-divider"></div>
@@ -56,21 +55,21 @@
                                 <li>
                                     <div class="dropdown-divider"></div>
                                 </li>
-                                <li><a class="dropdown-item" href=''>Kategorie
+                                <li><a class="dropdown-item" href='{% url "sluzby:kategoriezalohy-listing" %}'>Kategorie
                                     předpisů plateb</a></li>
-                                <li><a class="dropdown-item" href=''>Kategorie
+                                <li><a class="dropdown-item" href='{% url "sluzby:kategoriefaktury-listing" %}'>Kategorie
                                     dokladů k rozúčtování</a></li>
                             </ul>
                         </li>
                         <li>
                             <div class="dropdown-divider"></div>
                         </li>
-                        <li><a class="dropdown-item" href=''>Parametry - domy</a>
+                        <li><a class="dropdown-item" href='{% url "byty:vyber-konfiguraci-dum" %}'>Parametry - domy</a>
                         </li>
                         <li>
                             <div class="dropdown-divider"></div>
                         </li>
-                        <li><a class="dropdown-item" href=''>Parametry -
+                        <li><a class="dropdown-item" href='{% url "uzaverky:vyber-konfiguraci-uzaverky" %}'>Parametry -
                             uzávěrky</a>
                         </li>
                     </ul>
@@ -83,25 +82,25 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarByty">
                         <li>
-                            <a class="dropdown-item" href=''><b>Domy</b></a>
+                            <a class="dropdown-item" href='{% url "byty:domy-listing" %}'><b>Domy</b></a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href=''>Přidat nový</a>
-                        </li>
-                        <li>
-                            <div class="dropdown-divider"></div>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href=''><b>Jednotky</b></a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href=''>Přidat novou</a>
+                            <a class="dropdown-item" href='{% url "byty:domy-create" %}'>Přidat nový</a>
                         </li>
                         <li>
                             <div class="dropdown-divider"></div>
                         </li>
                         <li>
-                            <a class="dropdown-item" href=''>
+                            <a class="dropdown-item" href='{% url "byty:byty-listing" %}'><b>Jednotky</b></a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href='{% url "byty:byty-create" %}'>Přidat novou</a>
+                        </li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href='{% url "sluzby:zalohydefinice-listing" %}'>
                                 <b>Předpisy plateb</b>
                             </a>
                         </li>
@@ -109,26 +108,26 @@
                             <div class="dropdown-divider"></div>
                         </li>
                         <li>
-                            <a class="dropdown-item" href=''><b>Platby</b></a>
+                            <a class="dropdown-item" href='{% url "sluzby:zalohyplatby-listing" %}'><b>Platby</b></a>
                         </li>
                         <li>
                             <div class="dropdown-divider"></div>
                         </li>
                         <li>
-                            <a class="dropdown-item" href=''><b>GPC Import -
+                            <a class="dropdown-item" href='{% url "sluzby:gpc-import-kreditni-vyber-dum" %}'><b>GPC Import -
                                 připsané platby</b></a>
                         </li>
                         <li>
                             <div class="dropdown-divider"></div>
                         </li>
                         <li>
-                            <a class="dropdown-item" href=''>Nájemnící</a>
+                            <a class="dropdown-item" href='{% url "byty:najemnici-listing" %}'>Nájemnící</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href=''>Vlastníci</a>
+                            <a class="dropdown-item" href='{% url "byty:vlastnici-listing" %}'>Vlastníci</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href=''>Počty osob</a>
+                            <a class="dropdown-item" href='{% url "byty:pocetosob-listing" %}'>Počty osob</a>
                         </li>
                     </ul>
                 </li>
@@ -140,16 +139,16 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarSluzbyy">
                         <li>
-                            <a class="dropdown-item" href=''>Definice</a>
+                            <a class="dropdown-item" href='{% url "sluzby:sluzbydefinice-listing" %}'>Definice</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href=''>Koeficienty</a>
+                            <a class="dropdown-item" href='{% url "sluzby:sluzbykoeficienty-listing" %}'>Koeficienty</a>
                         </li>
                         <li>
                             <div class="dropdown-divider"></div>
                         </li>
                         <li>
-                            <a class="dropdown-item" href=''>
+                            <a class="dropdown-item" href='{% url "sluzby:sluzbyfaktury-listing" %}'>
                                 <b>Doklady k rozúčtování</b>
                             </a>
                         </li>
@@ -157,7 +156,7 @@
                             <div class="dropdown-divider"></div>
                         </li>
                         <li>
-                            <a class="dropdown-item" href=''>
+                            <a class="dropdown-item" href='{% url "sluzby:gpc-import-debetni-vyber-dum" %}'>
                                 <b>GPC Import - odepsané platby</b>
                             </a>
                         </li>
@@ -170,19 +169,19 @@
                         Měřidla
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarOaplikaci">
-                        <li><a class="dropdown-item" href=''>Seznam odečtových služeb</a></li>
-                        <li><a class="dropdown-item" href=''>Služby rozpad fakturace</a></li>
+                        <li><a class="dropdown-item" href='{% url "sluzby:sluzbydefinice-listing-odecitane" %}'>Seznam odečtových služeb</a></li>
+                        <li><a class="dropdown-item" href='{% url "odecty:rozpadove-sluzby-listing" %}'>Služby rozpad fakturace</a></li>
                         <li><div class="dropdown-divider"></div></li>
-                        <li><a class="dropdown-item" href=''>Seznam odečtů měřidel</a></li>
+                        <li><a class="dropdown-item" href='{% url "odecty:odecty-listing" %}'>Seznam odečtů měřidel</a></li>
                         <li><div class="dropdown-divider"></div></li>
-                        <li><a class="dropdown-item" href=''>Seznam měřidel</a></li>
-                        <li><a class="dropdown-item" href=''>Seznam rozpadových měřidel</a></li>
+                        <li><a class="dropdown-item" href='{% url "odecty:meridla-listing" %}'>Seznam měřidel</a></li>
+                        <li><a class="dropdown-item" href='{% url "odecty:rozpadova-meridla-listing" %}'>Seznam rozpadových měřidel</a></li>
                         <li><div class="dropdown-divider"></div></li>
-                        <li><a class="dropdown-item" href=''>Roční závěrka měřidel</a></li>
-                        <li><a class="dropdown-item" href=''>Roční závěrka rozpadových měřidel</a></li>
+                        <li><a class="dropdown-item" href='{% url "odecty:uzaverky-vyber-sluzbu-odecty" %}'>Roční závěrka měřidel</a></li>
+                        <li><a class="dropdown-item" href='{% url "odecty:uzaverky-vyber-sluzbu-rozpady" %}'>Roční závěrka rozpadových měřidel</a></li>
                         <li><div class="dropdown-divider"></div></li>
-                        <li><a class="dropdown-item" href=''>Přidej nové měřidlo</a></li>
-                        <li><a class="dropdown-item" href=''>Přidej nový odečet</a></li>
+                        <li><a class="dropdown-item" href='{% url "odecty:meridla-create" %}'>Přidej nové měřidlo</a></li>
+                        <li><a class="dropdown-item" href='{% url "odecty:odecty-create" %}'>Přidej nový odečet</a></li>
                     </ul>
                 </li>
                 <!-- UZAVERKY -->
@@ -192,16 +191,16 @@
                         Závěrky
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarZaverky">
-                        <li><a class="dropdown-item" href=''>Odečty</a></li>
+                        <li><a class="dropdown-item" href='{% url "sluzby:sluzbyodecty-listing" %}'>Odečty</a></li>
                         <li>
                             <div class="dropdown-divider"></div>
                         </li>
-                        <li><a class="dropdown-item" href=''>Roční
+                        <li><a class="dropdown-item" href='{% url "uzaverky:rocni-uzaverka-vyber-dum" %}'>Roční
                             závěrka</a></li>
                         <li>
                             <div class="dropdown-divider"></div>
                         </li>
-                        <li><a class="dropdown-item" href=''>Archiv
+                        <li><a class="dropdown-item" href='{% url "uzaverky:archiv-rocnich-uzaverek-vyber-dum" %}'>Archiv
                             ročních závěrek</a></li>
                     </ul>
                 </li>
@@ -256,9 +255,9 @@
                             <li>
                                 <div class="dropdown-divider"></div>
                             </li>
-                            <li><a class="dropdown-item" href=''>Ukončené
+                            <li><a class="dropdown-item" href='{% url "sluzby:sluzbydefinice-ukoncene-listing" %}'>Ukončené
                                 služby</a></li>
-                            <li><a class="dropdown-item" href=''>Neaktivní
+                            <li><a class="dropdown-item" href='{% url "sluzby:sluzbydefinice-reaktivace-listing" %}'>Neaktivní
                                 služby</a></li>
                             <li>
                                 <div class="dropdown-divider"></div>

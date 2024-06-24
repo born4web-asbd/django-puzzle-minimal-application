@@ -14,20 +14,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Application identifier/name used to get and switch application specific configurations for modules
 DJANGO_PUZZLE_APPLICATION = 'minimalpuzzle'
 DJANGO_PUZZLE_APPLICATION_CONFIG = {
-    'SETTINGS_DIR': os.path.join(BASE_DIR, DJANGO_PUZZLE_APPLICATION),
+    'SETTINGS_DIR': BASE_DIR / DJANGO_PUZZLE_APPLICATION,
     'CONFIGURATIONS': f"{DJANGO_PUZZLE_APPLICATION}.configurations",
-    'TEMPLATES': os.path.join(BASE_DIR, f"{DJANGO_PUZZLE_APPLICATION}/templates"),
+    'TEMPLATES': BASE_DIR / DJANGO_PUZZLE_APPLICATION / 'templates',
     # Implemented django puzzles or app modules - we can use it for management commands over our modules for example
     'IMPLEMENTED_MODULES': [
         'sharedlibrary',
         'accounts',
         'contacts',
-        # 'textnote',
+        'textnote',
+        'feedback',
         # 'byty',
         # 'sluzby',
         # 'uzaverky',
         # 'odecty',
-        # 'feedback',
     ]
 }
 
@@ -55,11 +55,11 @@ INSTALLED_APPS = [
 
     # Aplikace tretich stran
     'django_extensions',
-    # 'phonenumber_field',
-    # 'mathfilters',
-    # 'django_summernote',  # WYSIWYG
+    'phonenumber_field',
+    'mathfilters',
+    'django_summernote',  # WYSIWYG
     # 'bootstrap4',
-    # 'bootstrap5',
+    'bootstrap5',
     # 'bootstrap_datepicker_plus',
     # 'fontawesomefree',
 
@@ -70,8 +70,8 @@ INSTALLED_APPS = [
     'sharedlibrary',
     'accounts',
     'contacts',
-    # 'textnote',
-    # 'feedback',
+    'textnote',
+    'feedback',
 
     # ASBD
     # 'byty',
@@ -96,8 +96,10 @@ ROOT_URLCONF = 'minimalpuzzle.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(DJANGO_PUZZLE_APPLICATION_CONFIG["TEMPLATES"]),
-                 os.path.join(BASE_DIR, 'sharedlibrary/templates')],
+        'DIRS': [
+            DJANGO_PUZZLE_APPLICATION_CONFIG["TEMPLATES"],
+            BASE_DIR / 'sharedlibrary' / 'templates'
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -151,9 +153,9 @@ LANGUAGES = [
     ('en', _('English')),
 ]
 
-LOCALE_PATHS = (
-    os.path.join(BASE_DIR, 'locale/'),
-)
+LOCALE_PATHS = [
+    BASE_DIR / 'locale'
+]
 
 # Internationalization
 # LANGUAGE_CODE = 'en-us'
@@ -171,12 +173,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static_deployment")
+STATIC_ROOT = BASE_DIR / 'static_deployment'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static_shared"),
-    os.path.join(DJANGO_PUZZLE_APPLICATION_CONFIG["TEMPLATES"], f"static"),
-    os.path.join(BASE_DIR, "sharedlibrary/templates/static"),
+    BASE_DIR / 'static_shared',
+    DJANGO_PUZZLE_APPLICATION_CONFIG["TEMPLATES"] / 'static',
+    BASE_DIR / 'sharedlibrary' / 'templates' / 'static',
 ]
 
 STATICFILES_FINDERS = [
@@ -186,7 +188,7 @@ STATICFILES_FINDERS = [
 
 # FILE SYSTEM STORAGE SETTINGS
 MEDIA_URL = '/filestorage/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'filestorage')
+MEDIA_ROOT = BASE_DIR / 'filestorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -205,7 +207,7 @@ LOGGING = {
             '()': 'django.utils.log.RequireDebugTrue',
         },
         'hide_log_level_names': {
-            '()':              'sharedlibrary.utils.logging.FilterLogLevelNames',
+            '()': 'sharedlibrary.utils.logging.FilterLogLevelNames',
             'log_level_names': [],
         },
     },
@@ -238,12 +240,12 @@ LOGGING = {
             'class': 'django.utils.log.AdminEmailHandler'
         },
         'log_file': {
-            'level':       'DEBUG',
-            'class':       'logging.handlers.RotatingFileHandler',
-            'filename':    os.path.join(BASE_DIR, os.getenv('APPLICATION_LOG_FILE')),
-            'maxBytes':    5242880,
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': BASE_DIR / os.getenv('APPLICATION_LOG_FILE'),
+            'maxBytes': 5242880,
             'backupCount': 100,
-            'formatter':   'csv_log_file_format'
+            'formatter': 'csv_log_file_format'
         }
     },
     'loggers': {
