@@ -5,6 +5,7 @@ import sys
 
 from dotenv import read_dotenv
 
+
 def main():
     """Run administrative tasks."""
     read_dotenv(override=True)
