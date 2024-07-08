@@ -7,7 +7,7 @@ from sharedlibrary.configurations.global_context_parameters import (GLOBAL_APPLI
                                                                     VIEW_SPECIFIC_BUTTONS_LINKS_CONFIGURATION_CONTEXT_NAME,
                                                                     VIEW_SPECIFIC_COLOR_SCHEME_CONFIGURATION_CONTEXT_NAME,
                                                                     GLOBAL_APPLICATION_BUTTONS_LINKS_CONFIGURATION_CONTEXT_NAME,
-                                                                    global_application_color_schema_configuration_CONTEXT_NAME,
+                                                                    GLOBAL_APPLICATION_COLOR_SCHEMA_CONFIGURATION_CONTEXT_NAME,
                                                                     )
 
 APPLICATIONS = [
@@ -63,7 +63,7 @@ APPLICATION_CONFIGURATIONS = {
          },
         {
             'name': 'ASBD color schema',
-            'context_name': global_application_color_schema_configuration_CONTEXT_NAME,
+            'context_name': GLOBAL_APPLICATION_COLOR_SCHEMA_CONFIGURATION_CONTEXT_NAME,
             'type': 'C',
             'attributes': {
                 "menu_row_text_color": "text-white",

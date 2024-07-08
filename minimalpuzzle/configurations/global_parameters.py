@@ -1,7 +1,7 @@
 """
 Global parameters for Django Puzzel PAMA application.
 """
-from sharedlibrary.utils.configurations import module_configuration_deeper_conversion_to_attribute_dictionary
+from sharedlibrary.utils.configs import module_configuration_deeper_conversion_to_attribute_dictionary
 
 
 # management command database import hook - only those definitions are imported

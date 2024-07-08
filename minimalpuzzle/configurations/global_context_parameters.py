@@ -37,7 +37,7 @@ DEFAULT_APPLICATION_BUTTONS_LINKS_CONFIGURATION = {
 # ##############################################################
 # #	 	  		Color scheme configuration					   #
 # ##############################################################
-# default context_name => global_application_color_schema_configuration_CONTEXT_NAME
+# default context_name => GLOBAL_APPLICATION_COLOR_SCHEMA_CONFIGURATION_CONTEXT_NAME
 DEFAULT_APPLICATION_COLOR_SCHEME_CONFIGURATION = {
     "menu_row_text_color": "text-white",
     "menu_row_background_color": "bg-dark",
