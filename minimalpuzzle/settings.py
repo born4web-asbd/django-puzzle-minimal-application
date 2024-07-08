@@ -111,7 +111,7 @@ TEMPLATES = [
                 'sharedlibrary.context_processors.django_puzzle_application_name',
                 'sharedlibrary.context_processors.back_link_referer',
                 'sharedlibrary.context_processors.django_puzzle_installed_applications',
-                'sharedlibrary.utils.configuration.context_parameters.get_application_context_configurations',
+                'sharedlibrary.context_processors.django_puzzle_context_parameters_configuration',
                 'accounts.utils.context_processors.is_user_deletion_allowed_from_application',
                 'accounts.utils.context_processors.is_user_member_of_developers',
             ],
