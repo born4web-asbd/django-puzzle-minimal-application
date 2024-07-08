@@ -71,12 +71,20 @@
                         Podněty
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarFeedback">
-                        <li><a class="dropdown-item" href='{% url "feedback:feedbacknote-listing" %}'>Seznam podnětů</a></li>
+                        <li>
+                            <h6 class="dropdown-header">Správa podnětů</h6>
+                        </li>
+                        <li>
+                            <a class="dropdown-item ps-4 fw-normal" href='{% url "feedback:feedbacknote-listing" %}'>Seznam všech podnětů</a>
+                        </li>
                         {% if request.user|user_has_any_group:"developers admin_module_feedback" %}
                         <li>
                             <div class="dropdown-divider"></div>
                         </li>
-                        <li><a class="dropdown-item" href='{% url "feedback:feedbacknote-category-listing" %}'>Kategorie podnětů</a></li>
+                        <li>
+                            <h6 class="dropdown-header">Správa kategorií</h6>
+                        </li>
+                        <li><a class="dropdown-item ps-4 fw-normal" href='{% url "feedback:feedbacknote-category-listing" %}'>Kategorie podnětů</a></li>
                         {% endif %}
                     </ul>
                 </li>
@@ -117,9 +125,9 @@
             <!-- ZAMKNOUT -->
             <li class="nav-item">
                 {% if user.is_authenticated %}
-                    <a title="Odhlásit se..." href="{% url 'accounts:confirm-account-logout' %}"><i class="fas fa-lock-open"></i></a>
+                    <a title="Odhlásit se..." href="{% url 'accounts:confirm-account-logout' %}"><i class="bi bi-unlock-fill"></i></a>
                 {% else %}
-                    <a title="Přihlásit se..." href="{% url 'accounts:account-login' %}"><i class="fas fa-lock"></i></a>
+                    <a title="Přihlásit se..." href="{% url 'accounts:account-login' %}"><i class="bi bi-lock-fill"></i></a>
                 {% endif %}
             </li>
         </ul>

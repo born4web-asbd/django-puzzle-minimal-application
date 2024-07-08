@@ -281,13 +281,13 @@
         </ul>
         <ul class="navbar-nav">
             <!-- ZAMKNOUT -->
-            <li class="nav-item">
+            <li class="nav-item">dljfslkdjkss
                 {% if user.is_authenticated %}
                     <a title="Odhlásit se..."
-                       href="{% url 'accounts:confirm-account-logout' %}"><i class="fas fa-lock-open"></i></a>
+                       href="{% url 'accounts:confirm-account-logout' %}"><i class="bi bi-unlock-fill"></i></a>
                 {% else %}
                     <a title="Přihlásit se..."
-                       href="{% url 'accounts:account-login' %}"><i class="fas fa-lock"></i></a>
+                       href="{% url 'accounts:account-login' %}"><i class="bi bi-lock-fill"></i></a>
                 {% endif %}
             </li>
         </ul>
