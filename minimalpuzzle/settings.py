@@ -16,7 +16,8 @@ DJANGO_PUZZLE_APPLICATION = 'minimalpuzzle'
 DJANGO_PUZZLE_APPLICATION_CONFIG = {
     'SETTINGS_DIR': BASE_DIR / DJANGO_PUZZLE_APPLICATION,
     'CONFIGURATIONS': f"{DJANGO_PUZZLE_APPLICATION}.configurations",
-    'TEMPLATES': BASE_DIR / DJANGO_PUZZLE_APPLICATION / 'templates',
+    # 'TEMPLATES': BASE_DIR / DJANGO_PUZZLE_APPLICATION / 'templates',
+    'TEMPLATES': BASE_DIR / 'sharedlibrary' / 'templates',
     # Implemented django puzzles or app modules - we can use it for management commands over our modules for example
     'IMPLEMENTED_MODULES': [
         'sharedlibrary',
@@ -112,6 +113,8 @@ TEMPLATES = [
                 'sharedlibrary.context_processors.back_link_referer',
                 'sharedlibrary.context_processors.django_puzzle_installed_applications',
                 'sharedlibrary.context_processors.django_puzzle_context_parameters_configuration',
+                'sharedlibrary.context_processors.django_puzzle_implemented_modules',
+                'sharedlibrary.context_processors.django_puzzle_navbar',
                 'accounts.utils.context_processors.is_user_deletion_allowed_from_application',
                 'accounts.utils.context_processors.is_user_member_of_developers',
             ],
