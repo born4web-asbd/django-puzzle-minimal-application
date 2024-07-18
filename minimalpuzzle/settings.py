@@ -20,7 +20,7 @@ DJANGO_PUZZLE_APPLICATION_CONFIG = {
     'TEMPLATES': BASE_DIR / 'sharedlibrary' / 'templates',
     # Implemented django puzzles or app modules - we can use it for management commands over our modules for example
     'IMPLEMENTED_MODULES': [
-        'sharedlibrary',
+        # 'sharedlibrary', TODO: Zkontrolovat jestli to neni nekde pouzito ale logicky to sem nepatri !!!
         'accounts',
         'contacts',
         'textnote',
